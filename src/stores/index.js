@@ -11,5 +11,5 @@ let ls = new SecureLS({
 
 piniaStore.use(createPersistedState({
     key:'courStore'
-}))
+})) 
 export default piniaStore

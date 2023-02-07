@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import {makeCustomRequestToDB} from '../lib/api.js'
 
 export const useCourStore = defineStore('cours',()=>{
     const sessionTab = ref([])
@@ -7,6 +8,19 @@ export const useCourStore = defineStore('cours',()=>{
     const isLoading = ref(false)
     const isConnect= ref(false)
     const error = ref('')
+
+    const calLocalApi = async ()=>{
+        try {
+          let response = await  makeCustomRequestToDB({
+                "action": "select",
+                "table": "session"
+            })
+        console.log(response.data);
+        } catch (error) {
+
+            console.log(error);
+        }
+    }
 
     const callCoursApi = async ()=>{
         isLoading.value = true
@@ -61,5 +75,5 @@ export const useCourStore = defineStore('cours',()=>{
 
 
 
-    return {callCoursApi,choseCours,session,isLoading,TotalComput,isConnect}
+    return {callCoursApi,choseCours,calLocalApi,session,isLoading,TotalComput,isConnect}
 })

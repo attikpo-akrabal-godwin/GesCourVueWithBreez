@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from "@/views/Login.vue"
 import Header from "../views/Cours.vue"
-import { useCourStore } from '../stores/cours'
+import {useBreezCours} from "../stores/BreezCours.js"
+
 
 
 const router = createRouter({
@@ -20,9 +21,9 @@ const router = createRouter({
   ]
 })
 router.beforeEach((to,from,next)=>{
-  let courStore = useCourStore()
+  let BreezCours = useBreezCours()
   if(to.name==='cours'){
-    if(!courStore.isConnect){
+    if(!BreezCours.isConnect){
        next({name:"login"})
     }
   }

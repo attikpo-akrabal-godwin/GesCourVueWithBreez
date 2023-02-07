@@ -1,11 +1,11 @@
 <script setup>
     import jours from './jours.vue';
-    defineProps(['crenau'])
+    let props = defineProps(['crenau'])
 </script>
 
-<template>
+<template>   
     <tr>
-        <td class="heure"> {{crenau.horaire}}</td>
+        <td class="heure"> {{crenau.start_time}}</td>
         <jours v-for="jour in crenau.jours" :jour="jour" :crenauId="crenau.id"/>        
     </tr>
 </template>

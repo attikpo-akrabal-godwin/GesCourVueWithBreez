@@ -1,8 +1,8 @@
 <script setup>
 import { ref,computed } from 'vue';
 import { useRouter } from 'vue-router';
-import {useCourStore} from "../stores/cours.js"
-const courStore =  useCourStore()
+import {useBreezCours} from "../stores/BreezCours.js"
+let BreezCours = useBreezCours()
 
 const nom  = ref()
 const password = ref()
@@ -33,7 +33,7 @@ const onclick = ()=>{
     if ((nom.value)&&(password.value)&&(password.value==="boncool")) {
         nomError.value = undefined
         passwordError.value = undefined
-        courStore.isConnect = true
+        BreezCours.isConnect = true
         router.push('/cours')
     }else{
         nomError.value = nomErrorFunc()

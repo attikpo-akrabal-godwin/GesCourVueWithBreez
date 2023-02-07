@@ -1,9 +1,10 @@
 <script setup>
     import LoadSpine from "./LoadSpine.vue";
-    import {useCourStore} from "../stores/cours.js"
+    import {useBreezCours} from "../stores/BreezCours.js"
     import Crenau from "./Crenau.vue";
-    let CourStore = useCourStore()
-
+    let BreezCours = useBreezCours()
+    BreezCours.selectSession()
+    
 </script>
 
 <template>
@@ -22,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="CourStore.isLoading">
+                    <tr v-if="BreezCours.isProgramLoading">
                         <td class="heure">
                             <LoadSpine/>
                         </td>
@@ -47,10 +48,8 @@
                         <td>
                             <LoadSpine/>
                         </td>
-
-                        
                     </tr>
-                    <Crenau v-else v-for="crenau in CourStore.session.creneaux" :crenau="crenau"/>
+                    <Crenau v-else  v-for="program in BreezCours.program" :crenau="program"/>
                 </tbody>
             </table>
         </main>
